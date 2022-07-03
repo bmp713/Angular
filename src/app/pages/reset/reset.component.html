@@ -1,0 +1,39 @@
+
+<div class="reset">
+    <div class="row justify-content-lg-center align-items-center">
+        <div class="col-lg-5 text-center m-3">
+            <img class="w-100" src="../assets/Devices7.png" alt="new"/>
+        </div>
+        <div class="col-lg-5 text-start ">
+            <div class="col-lg-10 text-left text-lg-white p-4">
+                <h1>Password Reset</h1>
+            </div>
+            <div class="App-modal">
+                <form onSubmit={sendPasswordEmail}>
+                    <h2 style="color:#222f">Reset Password</h2>
+                    <p>An email will be sent to reset your password</p>
+                    <input
+                        name="email" type="text" placeholder="Email"
+                    /><br>
+                    <input
+                        class="submit-btn" type="submit" value="Send Email"
+                    />
+                    <div class="row justify-content-lg-center align-items-stretch">
+                        <div class="col-lg-6 text-center">
+                            <p>Don't have an account? <a [routerLink]="['/signup']"><strong> Sign Up</strong></a></p>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <a class="float-lg-end">
+                                <p [routerLink]="['/signin']"><strong>Sign In</strong></p>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

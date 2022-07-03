@@ -21,7 +21,9 @@ h2{
   font-weight: 400;
   font-family: 'Montserrat';
 }
-
+strong{
+  font-size: 15px;
+}
 
 
 header{
@@ -61,11 +63,21 @@ header{
 
 .signup{
   min-height: 100vh;
+  background: linear-gradient( #0000,#0000), url("./assets/10-(56).png");
+  background-size: 100%;
+  h2{
+    color: #ffff;
+  }
 }
 
 
 .reset{
   min-height: 100vh;
+  background: linear-gradient( #0000,#0000), url("./assets/10-(56).png");
+  background-size: 100%;
+  h2{
+    color: #ffff;
+  }
 }
 
 
@@ -75,6 +87,11 @@ header{
   margin: auto;
   width: 100%;
   min-height: 100vh;
+  background: linear-gradient( #0000,#0000), url("./assets/10-(56).png");
+  background-size: 100%;
+  h2{
+    color: #ffff;
+  }
   .header{
       margin: auto;
       width: 85%;

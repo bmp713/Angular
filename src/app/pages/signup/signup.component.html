@@ -1,0 +1,71 @@
+<div class="signup">
+    <div class="row signup justify-content-lg-center align-items-center">
+        <div class="col-lg-5 text-start">
+            <div class="col-lg-10 text-left p-3">
+                <h1>Sign Up</h1>
+                <h2>Connect Today and Change The World</h2>
+            </div>
+            <div class="App-modal text-left">
+                <form id='form'>
+                    <h2 style="color:#222f">Sign Up</h2>
+                    <input
+                        type="text" placeholder="First Name"
+                    /><br>
+                    <input
+                        type="text" placeholder="Last Name"
+                    /><br>
+                    <input
+                        type="text" placeholder="Email"
+                    /><br>
+                        <div class="eye-container">
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                pattern="(?=([^a-z]*[a-z]){1,})(?=([^A-Z]*[A-Z]){1,})(?=([^0-9]*[0-9]){1,})(?=(.*[$@$!%*?&]){0,})[A-Za-z\d$@$!%*?&.]{8,}"
+                            />
+                            <a class="btn-invisible">
+                                <img
+                                    id="eye" class="eye"
+                                    src="../assets/Icon-eye-closed.png"alt="new"
+                                />
+                            </a>
+                        </div>
+                    <input
+                        class="submit-btn" type="submit" value="Sign Up"
+                    /><br>
+                    <div class="row justify-content-lg-center align-items-stretch">
+                        <div class="col-lg-10 text-right px-2">
+                            <span style="font-size:10px">* By clicking "Sign Up", you are agreeing to the Terms of Service and Privacy policy.</span>
+                            <br><br>
+                            <p>Already have an account?
+                                <a
+                                    [routerLink]="['/login']"
+                                    class=".App-btn"
+                                >
+                                    <strong>Sign In</strong>
+                                </a><br>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+                <div class="row justify-content-lg-center align-items-stretch">
+                    <div class="col-lg-6 text-center">
+                        <span><button class=".app-btn">
+                            <img width='75' src="../assets/Icon-facebook.png" alt="new"/>
+                        </button></span>
+                        <span><button class=".app-btn">
+                            <img width='75' src="../assets/Icon-google.png" alt="new"/>
+                        </button></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 text-right px-5">
+            <img class="w-100" src="../assets/Devices7.png" alt="new"/>
+        </div>
+    </div>
+</div>
+
+
+

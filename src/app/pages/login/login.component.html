@@ -10,7 +10,7 @@
             </div>
             <div class="App-modal">
                 <form>
-                    <h2>Sign In</h2>
+                    <h2 style="color:#222f">Sign In</h2>
                     <p>Log in with existing account or click sign up below.</p>
                     <input
                         name="email" type="text" placeholder="Username"
@@ -30,16 +30,17 @@
                         </a>
                     </div>
                     <input
+                        [routerLink]="['/profile']"
                         class="submit-btn" type="submit" value="Sign In" href='/profile'
                     />
                     <div class="row justify-content-lg-center align-items-stretch">
                         <div class="col-lg-6 text-center">
                             <p>Don't have an account?
-                                <a to='/signup'><strong> Sign Up</strong></a>
+                                <a [routerLink]="['/signup']"><strong> Sign Up</strong></a>
                               </p>
                         </div>
                         <div class="col-lg-6 text-center">
-                            <a to='/reset' class="float-lg-end">
+                            <a [routerLink]="['/reset']" class="float-lg-end">
                                 <p><strong>Forgot Password?</strong></p>
                             </a>
                         </div>

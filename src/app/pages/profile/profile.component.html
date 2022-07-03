@@ -1,0 +1,55 @@
+<div class='profile page'>
+    <div class="header row justify-content-lg-left align-items-start">
+        <div class="col-lg-6 text-left">
+            <div class="row justify-content-lg-left align-items-center">
+                <div class="col-lg-10 text-left my-3 text-white">
+                    <div>
+                        <h2>
+                        currentUser
+                        </h2>
+                        currentUser.email<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 py-2 text-lg-end">
+            <p class="profile-settings text-white">
+                <span>currentUser.email</span> is signed in
+                <img
+                        width="40" height="40" class="m-2"
+                        src="{currentUser.imgURL}"
+                        alt="new"
+                />
+                <button
+                    [routerLink]="['/signin']"
+                    class="app-btn"
+                >Sign Out
+                </button><br>
+                <a href
+                    [routerLink]="['/signin']"
+                    class="mx-2 text-white"
+                >
+                    Delete Account
+                </a>
+                <span><img width="20px" class="m-3" src="../assets/Icon-gear-white.png" alt='new'/></span>
+            </p>
+        </div>
+    </div>
+    <div class="row justify-content-lg-center align-items-start">
+        <div class="col-lg-5 text-left m-lg-1">
+            <!-- <Friends/>
+            <Gallery/>
+            <Users/>
+            <News/> -->
+        </div>
+        <div class="col-lg-5 text-left my-lg-1">
+            <!-- <Messages/>
+            <Image/> -->
+        </div>
+        <div class="col-lg-5 text-left my-lg-1">
+        </div>
+    </div>
+</div>
+
+
+
