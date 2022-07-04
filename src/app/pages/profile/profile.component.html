@@ -14,19 +14,19 @@
         </div>
         <div class="col-lg-6 py-2 text-lg-end">
             <p class="profile-settings text-white">
-                <span>currentUser.email</span> is signed in
+                <span *ngIf="">currentUser.email</span> is signed in
                 <img
                         width="40" height="40" class="m-2"
                         src="{currentUser.imgURL}"
                         alt="new"
                 />
                 <button
-                    [routerLink]="['/signin']"
+                    routerLink='/signin'
                     class="app-btn"
                 >Sign Out
                 </button><br>
                 <a href
-                    [routerLink]="['/signin']"
+                    routerLink='/signin'
                     class="mx-2 text-white"
                 >
                     Delete Account

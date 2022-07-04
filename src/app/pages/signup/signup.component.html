@@ -6,19 +6,23 @@
                 <h2>Connect Today and Change The World</h2>
             </div>
             <div class="App-modal text-left">
-                <form id='form'>
+                <div id='form'>
                     <h2 style="color:#222f">Sign Up</h2>
                     <input
+                        #first
                         type="text" placeholder="First Name"
                     /><br>
                     <input
+                        #last
                         type="text" placeholder="Last Name"
                     /><br>
                     <input
+                        #email
                         type="text" placeholder="Email"
                     /><br>
                         <div class="eye-container">
                             <input
+                                #password
                                 type="password"
                                 name="password"
                                 placeholder="Password"
@@ -32,6 +36,7 @@
                             </a>
                         </div>
                     <input
+                        (click)="authService.signUp(first.value, last.value, email.value, password.value)"
                         class="submit-btn" type="submit" value="Sign Up"
                     /><br>
                     <div class="row justify-content-lg-center align-items-stretch">
@@ -40,7 +45,7 @@
                             <br><br>
                             <p>Already have an account?
                                 <a
-                                    [routerLink]="['/login']"
+                                    routerLink='/login'
                                     class=".App-btn"
                                 >
                                     <strong>Sign In</strong>
@@ -48,7 +53,7 @@
                             </p>
                         </div>
                     </div>
-                </form>
+                  </div>
                 <div class="row justify-content-lg-center align-items-stretch">
                     <div class="col-lg-6 text-center">
                         <span><button class=".app-btn">

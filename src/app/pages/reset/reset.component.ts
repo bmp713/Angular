@@ -10,6 +10,10 @@ export class ResetComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+      console.log("Reset component mounted");
   }
 
 }
+
+
+

@@ -14,6 +14,9 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ResetComponent } from './pages/reset/reset.component';
 
+import { environment } from 'src/environments/environment';
+import { AuthService } from "./services/auth.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,13 +30,14 @@ import { ResetComponent } from './pages/reset/reset.component';
     BrowserModule,
     AppRoutingModule,
 
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

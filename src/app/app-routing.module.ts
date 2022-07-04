@@ -5,6 +5,8 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ResetComponent } from './pages/reset/reset.component';
 
+import { AuthGuard } from './services/auth.guard';
+
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },

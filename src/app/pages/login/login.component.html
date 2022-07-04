@@ -9,14 +9,18 @@
                 <h2>Connect Today and Change The World</h2>
             </div>
             <div class="App-modal">
-                <form>
+                <div>
                     <h2 style="color:#222f">Sign In</h2>
                     <p>Log in with existing account or click sign up below.</p>
                     <input
-                        name="email" type="text" placeholder="Username"
+                        #email
+                        name="email"
+                        type="text"
+                        placeholder="Username"
                     /><br>
                     <div class="eye-container">
                         <input
+                            #password
                             value="{formData.password}"
                             type="password"
                             name="password"
@@ -30,22 +34,22 @@
                         </a>
                     </div>
                     <input
-                        [routerLink]="['/profile']"
-                        class="submit-btn" type="submit" value="Sign In" href='/profile'
-                    />
+                    (click)="authService.signIn(email.value, password.value)"
+                    class="submit-btn" type="submit" value="Sign In"
+                    >
                     <div class="row justify-content-lg-center align-items-stretch">
                         <div class="col-lg-6 text-center">
                             <p>Don't have an account?
-                                <a [routerLink]="['/signup']"><strong> Sign Up</strong></a>
+                                <a routerLink='/signup'><strong> Sign Up</strong></a>
                               </p>
                         </div>
                         <div class="col-lg-6 text-center">
-                            <a [routerLink]="['/reset']" class="float-lg-end">
+                            <a routerLink='/reset' class="float-lg-end">
                                 <p><strong>Forgot Password?</strong></p>
                             </a>
                         </div>
                     </div>
-                </form>
+                  </div>
                 <div class="row justify-content-lg-center align-items-stretch">
                     <div class="col-lg-6 text-center">
                         <span><button class=".app-btn">
