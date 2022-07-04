@@ -1,0 +1,77 @@
+<div class='gallery my-5 p-5'>
+    <div class="row justify-content-lg-between align-items-start">
+        <div class="col-lg-12 text-left">
+            <h2>Gallery
+                <span><button class="float-end text-decoration-underline text-dark">
+                    See all photos
+                </button></span>
+            </h2>
+        </div>
+        <div
+            style="color:#ffff; background:#000d; border-radius:4px"
+            class="col-lg-5 my-lg-2 py-2 my-3" id={image.id} key={image.id}
+        >
+            <img
+                width="30" height="30" class="m-2"
+                style="border-radius: 50%"
+            />
+            currentUser.first currentUser.last
+            <a class="float-end">
+                <img height="20" class="mx-2 float-end" src="./assets/Icon-dots-white.png" alt='new'/>
+            </a>
+            <img width="100%" class="my-2 img-responsive"/>
+
+            <div class="icons row justify-content-lg-left align-items-start">
+                <div class="col-3 text-left">
+                    <a href><img height="15" class="mx-1"
+                        src="./assets/Icon-star-white.png" alt='new'/></a>
+                </div>
+                <div class="col-3 text-left">
+                    <a><img height="15" class="mx-1" src="./assets/Icon-share-white.png"/></a>
+                </div>
+                <div class="col-3 text-left">
+                    <a href download target="_blank"><img height="15" class="mx-1"
+                        src="./assets/Icon-download-white.png" alt='new'/></a>
+                </div>
+                <div class="col-3 text-left">
+                    <button class="">
+                        <a href><img height="15" class="mx-1" src="./assets/Icon-trash-white.png" alt='new'/></a>
+                    </button>
+                </div>
+            </div>
+            <p style="font-size:10px; word-wrap: break-word">image.imageURL</p>
+            <hr>
+        </div>
+        <div class="col-lg-12 text-left">
+            <div class="create text-left">
+                <form>
+                    <div class="row text-left my-2">
+                        <h4>Add Image</h4>
+                    </div>
+                    <input
+                        value
+                        type="text" placeholder="Search by category"
+                    />
+                    <input
+                        value
+                        type="text" placeholder="Image URL"
+                    />
+                    <br>
+                    <input
+                        type="file"
+                      /><br>
+                        <div class="col-lg-12 text-left p-2">
+                            <img width="50%" src alt="">
+                            <br>
+                        </div>
+                    <input class="submit-btn" type="submit" value="Add"/><br>
+                    <p class="text-danger mx-2"> Please fill in all fields</p>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

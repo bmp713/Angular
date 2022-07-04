@@ -1,5 +1,5 @@
 <div class="signin">
-    <div class="row signin justify-content-lg-center align-items-center">
+    <div class="row justify-content-lg-center align-items-center">
         <div class="col-lg-5 text-center p-4">
             <img class="w-100" src="../assets/Devices7.png" alt="new"/>
         </div>
@@ -21,20 +21,20 @@
                     <div class="eye-container">
                         <input
                             #password
-                            value="{formData.password}"
-                            type="password"
+                            [type]="showPassword ? 'password' : 'text'"
                             name="password"
                             placeholder="Password"
                         />
                         <a class="btn-invisible">
                             <img
                                 id="eye" class="eye"
-                                src="../assets/Icon-eye-open.png"
+                                [src]="showPassword ? './assets/Icon-eye-closed.png' : './assets/Icon-eye-open.png' "
+                                (click)="togglePassword()"
                             />
                         </a>
                     </div>
                     <input
-                    (click)="authService.signIn(email.value, password.value)"
+                    (click)="authService.logIn(email.value, password.value)"
                     class="submit-btn" type="submit" value="Sign In"
                     >
                     <div class="row justify-content-lg-center align-items-stretch">
@@ -67,7 +67,7 @@
         <div class="col-lg-5 text-left">
             <div class="col-lg-10 text-left px-4">
                 <h1>Social Media</h1>
-                <h2>Its Impact Changed The World</h2>
+                <h2 style="color:#222f">Its Impact Changed The World</h2>
                 <br><br>
                 <p>
                 Social media was originally intended to bring us closer together but in many ways it has

@@ -1,5 +1,5 @@
 <div class="signup">
-    <div class="row signup justify-content-lg-center align-items-center">
+    <div class="row justify-content-lg-center align-items-center">
         <div class="col-lg-5 text-start">
             <div class="col-lg-10 text-left p-3">
                 <h1>Sign Up</h1>
@@ -9,35 +9,33 @@
                 <div id='form'>
                     <h2 style="color:#222f">Sign Up</h2>
                     <input
-                        #first
-                        type="text" placeholder="First Name"
+                        #first type="text" placeholder="First Name"
                     /><br>
                     <input
-                        #last
-                        type="text" placeholder="Last Name"
+                        #last type="text" placeholder="Last Name"
                     /><br>
                     <input
-                        #email
-                        type="text" placeholder="Email"
+                        #email type="text" placeholder="Email"
                     /><br>
-                        <div class="eye-container">
-                            <input
-                                #password
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                pattern="(?=([^a-z]*[a-z]){1,})(?=([^A-Z]*[A-Z]){1,})(?=([^0-9]*[0-9]){1,})(?=(.*[$@$!%*?&]){0,})[A-Za-z\d$@$!%*?&.]{8,}"
+                    <div class="eye-container">
+                        <input
+                            #password
+                            [type]="showPassword ?  'password' : 'text'"
+                            name="password"
+                            placeholder="Password"
+                            pattern="(?=([^a-z]*[a-z]){1,})(?=([^A-Z]*[A-Z]){1,})(?=([^0-9]*[0-9]){1,})(?=(.*[$@$!%*?&]){0,})[A-Za-z\d$@$!%*?&.]{8,}"
+                        />
+                        <a class="btn-invisible">
+                            <img
+                                id="eye" class="eye"
+                                [src]="showPassword ? './assets/Icon-eye-closed.png' : './assets/Icon-eye-open.png' "
+                                (click)="togglePassword()"
                             />
-                            <a class="btn-invisible">
-                                <img
-                                    id="eye" class="eye"
-                                    src="../assets/Icon-eye-closed.png"alt="new"
-                                />
-                            </a>
-                        </div>
+                        </a>
+                    </div>
                     <input
-                        (click)="authService.signUp(first.value, last.value, email.value, password.value)"
                         class="submit-btn" type="submit" value="Sign Up"
+                        (click)="authService.signUp(first.value, last.value, email.value, password.value)"
                     /><br>
                     <div class="row justify-content-lg-center align-items-stretch">
                         <div class="col-lg-10 text-right px-2">
@@ -45,8 +43,8 @@
                             <br><br>
                             <p>Already have an account?
                                 <a
-                                    routerLink='/login'
                                     class=".App-btn"
+                                    routerLink='/login'
                                 >
                                     <strong>Sign In</strong>
                                 </a><br>

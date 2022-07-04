@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
@@ -7,19 +6,15 @@ import { AuthService } from "../../services/auth.service";
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
+    showPassword = true;
 
-    constructor( public authService: AuthService ) {
-    }
+    constructor( public authService: AuthService ){}
 
-    ngOnInit() {
-        console.log("Login component mounted");
-    }
+    ngOnInit(){}
 
-    signIn = () => {
-        //e.preventDefault();
-
-        console.log("Signin clicked");
+    togglePassword(){
+      this.showPassword = !this.showPassword;
     }
 
 }

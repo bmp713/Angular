@@ -7,11 +7,14 @@ import { AuthService } from "../../services/auth.service";
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+    showPassword = true;
 
-    constructor( public authService: AuthService ){
-    }
+    constructor( public authService: AuthService ){}
 
-    ngOnInit(): void {
+    ngOnInit(): void{}
+
+    togglePassword(){
+        this.showPassword = !this.showPassword;
     }
 
 }

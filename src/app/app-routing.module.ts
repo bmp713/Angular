@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'reset', component: ResetComponent },
-    { path: '**', component: LoginComponent },
+    { path: '*', component: LoginComponent },
 ];
 
 @NgModule({
