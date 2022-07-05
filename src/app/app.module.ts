@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AuthService } from "./services/auth.service";
+import { environment } from 'src/environments/environment';
 
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
@@ -9,20 +10,19 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
+import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ResetComponent } from './pages/reset/reset.component';
-import { FooterComponent } from './components/footer/footer.component';
 
-import { environment } from 'src/environments/environment';
-import { AuthService } from "./services/auth.service";
+import { FooterComponent } from './components/footer/footer.component';
 import { FriendsComponent } from './components/friends/friends.component';
-import { UsersComponent } from './components/users/users.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { NewsComponent } from './components/news/news.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { UsersComponent } from './components/users/users.component';
 import { ImageComponent } from './components/image/image.component';
+import { NewsComponent } from './components/news/news.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +34,11 @@ import { ImageComponent } from './components/image/image.component';
     ResetComponent,
     FooterComponent,
     FriendsComponent,
-    UsersComponent,
     MessagesComponent,
-    NewsComponent,
     GalleryComponent,
+    UsersComponent,
     ImageComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,13 +12,13 @@
             class="col-lg-5 my-lg-2 py-2 my-3" id={image.id} key={image.id}
         >
             <img
-                width="30" height="30" class="m-2"
+                width="30" height="30" class="m-2" src="{{this.authService.userData.photoURL}}"
                 style="border-radius: 50%"
             />
             <a class="float-end">
                 <img height="20" class="mx-2 float-end" src="./assets/Icon-dots-white.png" alt='new'/>
             </a>
-            <img width="100%" class="my-2 img-responsive"/>
+            <img width="100%" class="my-2 img-responsive" src="{{this.authService.userData.photoURL}}"/>
 
             <div class="icons row justify-content-lg-left align-items-start">
                 <div class="col-3 text-left">

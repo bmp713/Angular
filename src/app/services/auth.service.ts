@@ -15,7 +15,6 @@ export class AuthService {
     userData: any;
     userProvider: any;
     isUserLoggedIn: boolean = false;
-
     id: any;
 
     // Firestore documents
@@ -25,7 +24,7 @@ export class AuthService {
         // Inject Firestore service
         public db: AngularFirestore, public auth: AngularFireAuth, public router: Router,
     ){
-        console.log("authService localstorage => ", JSON.parse(localStorage.getItem('user')!) );
+        console.log("constructor localstorage => ", JSON.parse(localStorage.getItem('user')!) );
         this.userData = JSON.parse(localStorage.getItem('user')!);
     }
 
@@ -36,10 +35,11 @@ export class AuthService {
                 console.log(email, "logged in");
 
                 this.isUserLoggedIn = true;
-                this.id = result.user?.uid
+                this.id = result.user?.uid;
+
+                // Get additional user data not available with Authentication
                 this.getFirestoreData(this.id);
 
-                //console.log("logIn() this.userData =>", this.userData);
                 localStorage.setItem('user', JSON.stringify(this.userData));
                 console.log("logIn localstorage => ", JSON.parse(localStorage.getItem('user')!) );
 
@@ -50,16 +50,17 @@ export class AuthService {
     }
 
     // Sign up with name and email/password
-    async signUp(first: string, last: string, email: string, password: string){
+   signUp(first: string, last: string, email: string, password: string){
         return this.auth.createUserWithEmailAndPassword(email, password)
             .then((result) => {
                 console.log("createUserWithEmailAndPassword() user =>", result.user?.uid);
 
+                // Set additional user data not available with Authentication
                 this.setFirestoreData(result.user?.uid, first, last, email);
                 this.logIn(email, password);
             })
             .catch((error) => {
-                console.log("signUp() ", error.message);
+                console.log("signUp ", error.message);
             });
     }
 
@@ -76,7 +77,7 @@ export class AuthService {
                 emailVerified: "",
             })
             .then(() => {
-                console.log(uid, "document created");
+                console.log(uid, "users document created");
             }).catch(function(error) {
                 console.error('setFirestoreData => ', error);
             });
@@ -92,7 +93,7 @@ export class AuthService {
                 emailVerified: "",
             })
             .then(() => {
-                console.log(uid, "document created");
+                console.log(uid, "friends document created");
             }).catch(function(error) {
                 console.error('setFirestoreData => ', error);
             });
@@ -104,11 +105,11 @@ export class AuthService {
             .doc(uid).ref
             .get()
             .then( (doc) => {
-                console.log("getFirestoreData =>", doc.data());
                 this.userData = doc.data();
                 console.log("getFirestoreData this.userData =>", this.userData);
+
                 localStorage.setItem('user', JSON.stringify(this.userData));
-                console.log("localstorage => ", JSON.parse(localStorage.getItem('user')!) );
+                console.log("getFirestoreData localstorage => ", JSON.parse(localStorage.getItem('user')!) );
 
             }).catch(function (error) {
                 console.log("getFirestoreData =>", error);
@@ -117,22 +118,21 @@ export class AuthService {
 
     // Sign out
     signOut() {
-        return this.auth.signOut().then(() => {
-            localStorage.removeItem('user');
-            this.router.navigate(['login']);
-            console.log("logout localstorage => ", JSON.parse(localStorage.getItem('user')!) );
+        return this.auth.signOut()
+            .then(() => {
+                localStorage.removeItem('user');
+                console.log("signOut localstorage => ", JSON.parse(localStorage.getItem('user')!) );
 
-        });
+                this.router.navigate(['login']);
+            });
     }
 
     // Send passwored reset email
     resetPassword(email: string){
-        console.log("resetPassword() auth.service => ", email );
+        console.log("resetPassword() authService.email => ", email );
 
         return this.auth.currentUser
             .then((user: any) => user.sendEmailVerification())
-            .then(() => {
-            });
       };
 }
 
