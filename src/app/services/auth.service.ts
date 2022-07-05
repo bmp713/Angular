@@ -13,12 +13,9 @@ export class AuthService {
 
     // Save logged in user data
     userData: any;
-
     userProvider: any;
     isUserLoggedIn: boolean = false;
 
-    userName: any;
-    email: any;
     id: any;
 
     // Firestore documents
@@ -26,40 +23,20 @@ export class AuthService {
 
     constructor(
         // Inject Firestore service
-        public db: AngularFirestore,
-        public auth: AngularFireAuth,
-        public router: Router,
-    )
-    {
-        this.auth.authState.subscribe((user) => {
-            if(user){
-                this.userProvider = user;
-
-                //console.log("this.auth = >", this.auth);
-                //console.log("this.userProvider = >", this.userProvider);
-
-                localStorage.setItem('user', JSON.stringify(this.userData));
-                JSON.parse(localStorage.getItem('user')!);
-            }else{
-                localStorage.setItem('user', 'null');
-                JSON.parse(localStorage.getItem('user')!);
-            }
-        });
-
-    }
+        public db: AngularFirestore, public auth: AngularFireAuth, public router: Router,
+    ){}
 
     // Sign in with email/password
     logIn(email: string, password: string){
         return this.auth.signInWithEmailAndPassword(email, password)
             .then((result) => {
                 console.log(email, "logged in");
+
                 this.isUserLoggedIn = true;
-
                 this.id = result.user?.uid
-
                 this.getFirestoreData(this.id);
-                //console.log("logIn() this.userData =>", this.userData);
 
+                //console.log("logIn() this.userData =>", this.userData);
                 //localStorage.setItem('user', JSON.stringify(this.userData));
                 //JSON.parse(localStorage.getItem('user')!);
 
@@ -72,7 +49,7 @@ export class AuthService {
     // Sign up with name and email/password
     async signUp(first: string, last: string, email: string, password: string){
         return this.auth.createUserWithEmailAndPassword(email, password)
-            .then( (result) => {
+            .then((result) => {
                 console.log("createUserWithEmailAndPassword() user =>", result.user?.uid);
 
                 this.setFirestoreData(result.user?.uid, first, last, email);
@@ -130,7 +107,6 @@ export class AuthService {
             }).catch(function (error) {
                 console.log("getFirestoreData =>", error);
             });
-
     }
 
     // Sign out
