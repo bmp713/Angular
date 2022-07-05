@@ -3,12 +3,7 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-// import { MessagesComponent } from '../components/messages/messages.component';
-// import { FriendsComponent } from '../components/friends/friends.component';
-// import { GalleryComponent } from '../components/gallery/gallery.component';
-// import { UsersComponent } from '../components/users/users.component';
-// import { ImageComponent } from '../components/image/image.component';
-// import { NewsComponent } from '../components/news/news.component';
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-profile',
@@ -17,10 +12,11 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor( public auth: AngularFireAuthModule ) {}
+  constructor( public authService: AuthService ){}
 
   ngOnInit(): void {
-      console.log("Profile component mounted");
+      // console.log("Profile auth =>", this.auth.email);
+
   }
 
 }

@@ -1,9 +1,9 @@
 <div
-    class="row justify-content-lg-between align-items-start p-4 text-white"
+    class="row justify-content-lg-between align-items-start p-4 py-lg-4 text-white"
     style="
-        margin:25px 0px;
-        color:#ffff;
-        background: #001c;
+        margin: 7px 0px;
+        color: #ffff;
+        background: #225c;
         border-radius: 2px;
         box-shadow: 10px 10px 20px #0009"
 >
@@ -12,6 +12,7 @@
             <span>
             <button
                 class="text-decoration-underline text-white float-end"
+                (click)="allArticles()"
             >
             See all articles
             </button></span>
@@ -19,29 +20,27 @@
         <h4>Top Stories</h4>
         <hr>
     </div>
-    <div class="col-lg-6 text-lg-end text-decoration-underline">
-    </div>
     <div class="row text-left">
-            <div class="col-xl-6">
-                <a
-                    class="text-white"
-                    target="_blank"
-                >
-                    <img
-                        height="125"
-                        class="my-2"
-                        src
-                    ><br>
-                    image<br>
-                    <strong>article.title</strong>
-                </a><br><br>
-
-                <p style="font-size:12px">article.abstract</p>
-            </div>
+        <div
+            *ngFor="let article of articles"
+            class="col-lg-6"
+        >
+            <a
+                class="text-white"
+                href="{{article.url}}" target="_blank"
+            >
+                <img
+                    height="125" class="my-2"
+                    src="{{article.multimedia !== null ? article.multimedia[2].url : ''}}"
+                ><br>
+                <strong>{{article.title}}</strong>
+                <p style="font-size:12px">{{article.abstract}}</p>
+            </a>
+        </div>
     </div>
     <button
-        class="submit-btn"
-        style="padding:11px 0px; font-size:14px"
+        class="submit-btn" style="padding:11px 0px; font-size:14px"
+        (click)="loadMore()"
     >
         Load more...
     </button>

@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Router } from '@angular/router';
 import { User } from '../services/user';
 import * as auth from 'firebase/auth';
-import { query, where, doc, addDoc, setDoc, getDoc, getDocs, deleteDoc, collection } from 'firebase/firestore';
+import { doc, getDoc } from "firebase/firestore";
 
 @Injectable({
     providedIn: 'root',
@@ -12,7 +12,14 @@ import { query, where, doc, addDoc, setDoc, getDoc, getDocs, deleteDoc, collecti
 export class AuthService {
 
     // Save logged in user data
+    userData: any;
+
     userProvider: any;
+    isUserLoggedIn: boolean = false;
+
+    userName: any;
+    email: any;
+    id: any;
 
     // Firestore documents
     document: any[] = [];
@@ -20,31 +27,25 @@ export class AuthService {
     constructor(
         // Inject Firestore service
         public db: AngularFirestore,
-
-        // Inject Firebase auth service
         public auth: AngularFireAuth,
         public router: Router,
     )
     {
         this.auth.authState.subscribe((user) => {
-          if(user){
-              this.userProvider = user;
+            if(user){
+                this.userProvider = user;
 
-              // localStorage.setItem('user', JSON.stringify(this.userProvider));
-              // JSON.parse(localStorage.getItem('user')!);
-          }else{
-              // localStorage.setItem('user', 'null');
-              // JSON.parse(localStorage.getItem('user')!);
-          }
+                //console.log("this.auth = >", this.auth);
+                //console.log("this.userProvider = >", this.userProvider);
+
+                localStorage.setItem('user', JSON.stringify(this.userData));
+                JSON.parse(localStorage.getItem('user')!);
+            }else{
+                localStorage.setItem('user', 'null');
+                JSON.parse(localStorage.getItem('user')!);
+            }
         });
 
-        this.db.collection("users")
-            .get()
-            .subscribe( (snapshot) => {
-                snapshot.docs.forEach( (doc) => {
-                    this.document.push(doc.data());
-                });
-            });
     }
 
     // Sign in with email/password
@@ -52,51 +53,29 @@ export class AuthService {
         return this.auth.signInWithEmailAndPassword(email, password)
             .then((result) => {
                 console.log(email, "logged in");
+                this.isUserLoggedIn = true;
+
+                this.id = result.user?.uid
+
+                this.getFirestoreData(this.id);
+                //console.log("logIn() this.userData =>", this.userData);
+
+                //localStorage.setItem('user', JSON.stringify(this.userData));
+                //JSON.parse(localStorage.getItem('user')!);
 
                 this.router.navigate(['profile']);
-                //this.setUserData(result.user);
-
             }).catch((error) => {
               console.log(error.message);
             });
     }
 
-    setUserData(user: any, first:string, last:string) {
-        const userRef: AngularFirestoreDocument = this.db.doc(`users/${user.uid}`);
-        const userData: User = {
-            uid: user.uid,
-            email: user.email,
-            first: first,
-            last: last,
-            photoURL: user.photoURL,
-            emailVerified: user.emailVerified,
-        };
-        return userRef.set(userData, {
-            merge: true,
-        });
-    }
-
-    // Sign out
-    signOut() {
-        return this.auth.signOut().then(() => {
-            //localStorage.removeItem('user');
-            this.router.navigate(['login']);
-        });
-    }
-
-    // Sign up with email/password
+    // Sign up with name and email/password
     async signUp(first: string, last: string, email: string, password: string){
-        console.log("signUp() auth.service => ", first, last, email, password );
-
         return this.auth.createUserWithEmailAndPassword(email, password)
             .then( (result) => {
-                console.log("createUserWithEmailAndPassword() user =>", result.user);
+                console.log("createUserWithEmailAndPassword() user =>", result.user?.uid);
 
-                //this.SendVerificationMail();
-                this.setUserData(result.user, first, last);
-
-                this.createUserFirebase( this.userProvider.uid, first, last, email);
-                //sendEmailVerification(auth.currentUser);
+                this.setFirestoreData(result.user?.uid, first, last, email);
                 this.logIn(email, password);
             })
             .catch((error) => {
@@ -104,20 +83,63 @@ export class AuthService {
             });
     }
 
-    // Create user additional profile data in users db
-    async createUserFirebase( id: string, first: string, last: string, email: string ){
-        this.db.collection('users').add({
-            id: id,
-            email: email,
-            first: first,
-            last: last,
-        })
-        .then(res => {
-            console.log("createUserFirebase =>", res);
-        }).catch(e => {
-            console.log("createUserFirebase ", e);
-        })
-    };
+    // Assign user data to Firestore
+    setFirestoreData(uid:any, first:string, last:string, email:string){
+        this.db.collection('users')
+            .doc(uid)
+            .set({
+                uid: uid,
+                email: email,
+                first: first,
+                last: last,
+                photoURL: "../assets/Icon-headshot.png",
+                emailVerified: "",
+            })
+            .then(() => {
+                console.log(uid, "document created");
+            }).catch(function(error) {
+                console.error('setFirestoreData => ', error);
+            });
+
+            this.db.collection('friends')
+            .doc(uid)
+            .set({
+                uid: uid,
+                email: email,
+                first: first,
+                last: last,
+                photoURL: "../assets/Icon-headshot.png",
+                emailVerified: "",
+            })
+            .then(() => {
+                console.log(uid, "document created");
+            }).catch(function(error) {
+                console.error('setFirestoreData => ', error);
+            });
+    }
+
+    // Get user data from Firestore
+    getFirestoreData(uid:any) {
+        let docRef = this.db.collection('users')
+            .doc(uid).ref
+            .get()
+            .then( (doc) => {
+                console.log("getFirestoreData =>", doc.data());
+                this.userData = doc.data();
+                console.log("getFirestoreData this.userData =>", this.userData);
+            }).catch(function (error) {
+                console.log("getFirestoreData =>", error);
+            });
+
+    }
+
+    // Sign out
+    signOut() {
+        return this.auth.signOut().then(() => {
+            localStorage.removeItem('user');
+            this.router.navigate(['login']);
+        });
+    }
 
     // Send passwored reset email
     resetPassword(email: string){

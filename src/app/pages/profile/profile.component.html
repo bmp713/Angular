@@ -5,23 +5,27 @@
                 <div class="col-lg-10 text-left my-3 text-white">
                     <div>
                         <h2>
-                        currentUser
+                        {{this.authService.userData.first}} {{this.authService.userData.last}}
                         </h2>
-                        currentUser.email<br>
+                        {{this.authService.userData.email}}<br>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-6 py-2 text-lg-end">
             <p class="profile-settings text-white">
-                <span *ngIf="">currentUser.email</span> is signed in
-                <img
-                        width="40" height="40" class="m-2"
-                        src="{currentUser.imgURL}"
-                        alt="new"
-                />
+                <span
+                    *ngIf="this.authService.userData.email"
+                    style="color:#0079c2"
+                >
+                {{this.authService.userData.email}}</span> is signed in
+                    <img
+                            width="40" height="40" class="m-2"
+                            src="{{this.authService.userData.photoURL}}"
+                            alt="new"
+                    />
                 <button
-                    routerLink='/signin'
+                    (click)="this.authService.signOut()"
                     class="app-btn"
                 >Sign Out
                 </button><br>
@@ -40,12 +44,10 @@
             <friends></friends>
             <gallery></gallery>
             <users></users>
-            <news></news>
-
         </div>
         <div class="col-lg-5 text-left my-lg-1">
-            <messages></messages>
             <news></news>
+            <messages></messages>
         </div>
         <div class="col-lg-5 text-left my-lg-1">
         </div>
