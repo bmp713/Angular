@@ -1,29 +1,26 @@
-<div class='friends my-2'>
-  <div class="row justify-content-lg-center align-items-center p-lg-5">
-  <div class="col-lg-6 text-lg-start">
-          <h2>Users </h2>
+<div class='friends my-lg-2'>
+  <div class="row justify-content-lg-left justify-content-center align-items-center p-lg-5">
+      <div class="col-lg-6 text-lg-start">
+          <h2>Users</h2>
       </div>
-      <div class="col-lg-6 text-lg-end">
-          <button class="text-decoration-underline text-white">See more users</button>
+      <div class="col-lg-6 text-lg-end text-decoration-underline">
+          <button class="text-decoration-underline text-white">See all users</button>
       </div>
-          <div class="col-lg-3 col-6">
-              <img class="my-2" width="100%"/>
-              <p style="font-size:15px">
-                  user.first user.last
-                  user.email<br>
-                  <button
-                      style="
-                          text-decoration:underline;
-                          line-height:0.5;
-                          color:#ffff;
-                          font-size:15px;
-                          padding:0px"
-                      >+ Add
-              </button>
-              </p>
-
+          <div
+              *ngFor="let user of users"
+              class="col-lg-3 col-6"
+          >
+              <a href>
+                  <img class="my-2" height="150" src={{user.photoURL}} alt="new"/>
+                  <p class="text-white">
+                      {{user.email}}<br>
+                  </p>
+                  <span><button
+                      class="Del-btn text-white">Delete
+                  </button></span>
+                  <hr>
+              </a>
           </div>
-      ))}
   </div>
 </div>
 

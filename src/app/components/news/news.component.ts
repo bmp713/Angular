@@ -27,8 +27,9 @@ export class NewsComponent implements OnInit {
         // science, technology, travel, us, world
 
         let url;
-        url = "https://api.nytimes.com/svc/topstories/v2/us.json?api-key=l0pE8ZYsNeEx6MAKnAyKmNnxJrOhAfCB"
-        url = "https://api.nytimes.com/svc/news/v3/content/nyt/all.json?api-key=l0pE8ZYsNeEx6MAKnAyKmNnxJrOhAfCB";
+        let headlines = "all";
+        url = `https://api.nytimes.com/svc/topstories/v2/us.json?api-key=l0pE8ZYsNeEx6MAKnAyKmNnxJrOhAfCB`;
+        url = `https://api.nytimes.com/svc/news/v3/content/nyt/${headlines}.json?api-key=l0pE8ZYsNeEx6MAKnAyKmNnxJrOhAfCB`;
 
         try{
             await fetch(url)

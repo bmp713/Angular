@@ -4,64 +4,57 @@
         background-size:cover"
 >
       <h2 class="mx-2">News Feed</h2>
-      <div class="message p-lg-0 my-2" id={message.id} key={message.id}>
+      <div
+          class="message p-lg-0 my-2" id
+          *ngFor="let message of messages"
+      >
+
           <div class="col-lg-12 px-lg-5 py-lg-3 p-3" >
               <img
-                  width="50" height="50" class="m-2"
+                  width="50" height="50" class="m-2" src="{{this.authService.userData.photoURL}}"
                   style="border-radius:50%"
-                  src={message.userImg} alt="new"
               />
-              message.first message.last
-                  <a href
-                      class="msgMenu float-end"
-                      id={message.id}
-                  >
+                  {{message.first}} {{message.last}}
+                  <a href class="msgMenu float-end">
                       <img
                           height="20" class="mx-2 float-end"
                           src="./assets/Icon-dots-black.png" alt='new'
                       />
-                      <div id={message.id}></div>
+                      <div id></div>
                   </a>
               <br>
-              <img width="100%" class='my-3' src={message.imageURL} alt=''/>
+              <img height="100" class="my-3"/>
+              {{message.message}}
               <br><br>
               <div>
                   <input
                       style="margin: 0px 0px 10px 0px"
-                      value={formData.message}
                       type="textarea" placeholder="Update your message"
                   />
                   <input
                       class="hide"
                       style="margin:0px"
-                      value={formData.imageURR}
                       type="textarea" placeholder="Image URL"
                   />
                   <input
                       style="margin:0px; border:none"
                       type="file"
                   /><br>
-                    <div
-                        class="col-lg-12 text-left p-2">
-                        <img
-                            width="25%" src={imageURL} alt="">
-                        <br>
-                        <p style="font-size:'10px; wordWrap:break-word">imageURL</p>
-                    </div>
-                  <button
-                      class="app-btn">Update
-                  </button>
-                  <button
-                      class="btn-black">Delete
-                  </button>
+                  <div
+                      class="col-lg-12 text-left p-2">
+                      <img
+                          width="25%" src alt=""/>
+                      <br>
+                      <p style="font-size:10px; word-wrap:break-word">imageURL</p>
+                  </div>
+                  <button class="app-btn">Update</button>
+                  <button class="btn-black">Delete</button>
               </div>
               <hr>
               <div class="icons row justify-content-lg-left align-items-start">
                   <div class="col-4 text-left">
-                      <a href
-                          id={message.id}
-                      >
-                              <img height="20px" class="mx-1" src="./assets/Icon-thumb-lightblue.png" alt='new'/>
+                      <a href id>
+                          <img height="20px" class="mx-1" src="./assets/Icon-thumb-lightblue.png" alt='new'/>
                       </a>
                   </div>
                   <div class="col-4 text-left">
@@ -79,27 +72,20 @@
       </div>
       <div class="create text-left my-5">
           <form id='form'>
-              <h3 class="mx-1">Message</h3>
+              <h3 class="mx-1 text-white">Message</h3>
               <input
-                  value={formData.message}
                   type="textarea" placeholder="Type your message here"
               />
               <input
                   class="hide"
-                  value={imageURL}
                   type="textarea" placeholder="Image URL"
               /><br>
-              <input
-                  type="file"
-              /><br>
+              <input type="file"
+              />
                   <div class="col-lg-12 text-left p-2">
-                      <img
-                          width="50%" src={imageURL} alt="">
-                      <br>
-                      imageURL
-                  </div>
+                      <img width="50%" src alt=""><br>
+                  </div><br>
               <input
-                  onClick={createMessage}
                   class="submit-btn" type="submit" value="Send"
               /><br>
           </form>

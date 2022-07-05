@@ -24,7 +24,10 @@ export class AuthService {
     constructor(
         // Inject Firestore service
         public db: AngularFirestore, public auth: AngularFireAuth, public router: Router,
-    ){}
+    ){
+        console.log("authService localstorage => ", JSON.parse(localStorage.getItem('user')!) );
+        this.userData = JSON.parse(localStorage.getItem('user')!);
+    }
 
     // Sign in with email/password
     logIn(email: string, password: string){
@@ -37,8 +40,8 @@ export class AuthService {
                 this.getFirestoreData(this.id);
 
                 //console.log("logIn() this.userData =>", this.userData);
-                //localStorage.setItem('user', JSON.stringify(this.userData));
-                //JSON.parse(localStorage.getItem('user')!);
+                localStorage.setItem('user', JSON.stringify(this.userData));
+                console.log("logIn localstorage => ", JSON.parse(localStorage.getItem('user')!) );
 
                 this.router.navigate(['profile']);
             }).catch((error) => {
@@ -104,6 +107,9 @@ export class AuthService {
                 console.log("getFirestoreData =>", doc.data());
                 this.userData = doc.data();
                 console.log("getFirestoreData this.userData =>", this.userData);
+                localStorage.setItem('user', JSON.stringify(this.userData));
+                console.log("localstorage => ", JSON.parse(localStorage.getItem('user')!) );
+
             }).catch(function (error) {
                 console.log("getFirestoreData =>", error);
             });
@@ -114,6 +120,8 @@ export class AuthService {
         return this.auth.signOut().then(() => {
             localStorage.removeItem('user');
             this.router.navigate(['login']);
+            console.log("logout localstorage => ", JSON.parse(localStorage.getItem('user')!) );
+
         });
     }
 

@@ -1,10 +1,21 @@
 <footer class="">
     <div class="row justify-content-center align-items-center">
-        <div class="col-lg-12 justify-content-center align-items-center text-center p-2">
-                <div>
-                    <a routerLink='/login' type="button" class="app-btn">Sign In</a>
-                    <a routerLink='/signup' type="button" class="text-white mx-5"><span>Register Free</span></a>
+        <div class="col-lg-12 justify-content-center align-items-center text-center text-white p-2">
+                <div *ngIf="!this.authService.userData">
+                    <a routerLink='/login' type="button" class="app-btn">
+                        Sign In
+                    </a>
+                    <span><a routerLink='/signup' type="button" class="text-white mx-5">
+                        Register Free
+                    </a></span>
                 </div>
+                <div *ngIf="this.authService.userData">
+                    <span style="margin:10px; font-size:16px">
+                        {{this.authService.userData.email}} is signed in</span>
+                    <button
+                        routerLink='/login' class='app-btn'
+                        (click)="this.authService.signOut()">Sign Out</button>
+              </div>
         </div>
     </div>
     <div class="row links justify-content-center align-items-center">
